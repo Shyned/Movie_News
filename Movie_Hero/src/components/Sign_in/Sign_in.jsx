@@ -3,10 +3,17 @@ import { supabase } from "../../supabaseClient";
 
 export default function Sign_in() {
   const [passwordType, setPasswordType] = useState("password");
-  const [userEmail, setUserEmail] = useState(" ");
-  const [userPasswowrd, setUserPassword] = useState(" ");
-
+  const [user, setUser] = useState({});
   const input_type = document.getElementById("SigninId");
+
+  const handleChange = (e) => {
+    console.log(e.target.name);
+    console.log(e.target.value);
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   async function signInWithEmail() {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -28,9 +35,15 @@ export default function Sign_in() {
     <div>
       <form action="submit">
         <label>Email</label>
-        <input type="email" />
+        <input type="email" name="email" onChange={handleChange} />
         <label id="SignPW">Password</label>
-        <input type={passwordType} id="SigninId" placeholder="Password" />
+        <input
+          type={passwordType}
+          id="SigninId"
+          placeholder="Password"
+          onChange={handleChange}
+          name="password"
+        />
 
         <button onClick={TogglePW}>
           {passwordType === "password" && (

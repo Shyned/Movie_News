@@ -10,7 +10,6 @@ export default function Register() {
   const [id, setId] = useState("");
   const TogglePW = (event) => {
     event.preventDefault();
-
     const input_type = document.getElementById("RegisterPW");
     if (passwordType === "password") {
       setPasswordType("text");
@@ -18,6 +17,7 @@ export default function Register() {
       setPasswordType("password");
     }
   };
+
   const ToggleComfirmPW = (event) => {
     event.preventDefault();
 
@@ -28,6 +28,11 @@ export default function Register() {
       setConfirmedPasswordTyped("password");
     }
   };
+
+  addEventListener("mouseover", (event) => {});
+
+  onmouseover = (event) => {};
+
   return (
     <div>
       <form action="submit">

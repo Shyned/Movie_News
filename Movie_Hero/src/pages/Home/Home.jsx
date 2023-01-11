@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+import { Drawer } from "@mui/material";
+import { Button } from "@mui/material";
 import axios from "axios";
 import Saved_drawer from "../../components/Saved_drawer/Saved_drawer";
 
@@ -8,7 +9,11 @@ export default function Home() {
   const [hasNewMovies, setHasNewMovies] = useState(false);
   const [placement, setPlacement] = useState();
   const [newMovies, setNewMovies] = useState({});
+  const [drawerState, setDrawerState] = useState(false);
 
+  const toggleDrawer = (open) => (event) => {
+    setDrawerState(open);
+  };
   useEffect(() => {
     const options = {
       method: "GET",
@@ -32,14 +37,10 @@ export default function Home() {
   return (
     <div>
       <input placeholder="Search"></input>
-      {/* <ButtonToolbar>
-        <Button onClick={() => setOpen(true)}>Favorite</Button>
-      </ButtonToolbar>
-      <Drawer placement="right" open={open} onClose={() => setOpen(false)}>
-        <Drawer.Body>
-          <Saved_drawer />
-        </Drawer.Body>
-      </Drawer> */}
+      <Button onClick={toggleDrawer(true)}>Saved</Button>
+      <Drawer anchor={"right"} open={drawerState} onClose={toggleDrawer(false)}>
+        <Saved_drawer />
+      </Drawer>
       <div>
         {hasNewMovies === true &&
           newMovies.map((newMovie) => {
