@@ -3,15 +3,14 @@ import "./App.css";
 import Home from "./pages/Home/Home";
 import Register from "./components/Register/Register";
 import Sign_in from "./components/Sign_in/Sign_in";
-import { Drawer, ButtonToolbar, Button, Placeholder } from "rsuite";
-
+import Button from "@mui/material/Button";
 function App() {
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
 
   return (
     <div className="App">
-      <ButtonToolbar>
+      {/* <ButtonToolbar>
         <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
         <Button onClick={() => setOpenRegister(true)}>Register</Button>
       </ButtonToolbar>
@@ -32,8 +31,8 @@ function App() {
         <Drawer.Body>
           <Register />
         </Drawer.Body>
-      </Drawer>
-
+      </Drawer> */}
+      <Button variant="contained">Hello World</Button>
       <Home />
     </div>
   );

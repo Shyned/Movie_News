@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Saved from "./pages/Saved/Saved";
-
+import "./main.css";
 const router = createBrowserRouter([
   {
     path: "/",
