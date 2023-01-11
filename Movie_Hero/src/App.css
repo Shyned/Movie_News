@@ -1,3 +1,16 @@
 .App {
   height: 100vh;
+  width: 100vw;
+}
+
+.titleArea {
+  display: inline;
+  display: flex;
+  flex-direction: column;
+  width: 4%;
+}
+
+.topSpace {
+  display: flex;
+  justify-content: space-between;
 }

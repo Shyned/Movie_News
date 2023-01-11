@@ -3,7 +3,7 @@ import { Drawer } from "@mui/material";
 import { Button } from "@mui/material";
 import axios from "axios";
 import Saved_drawer from "../../components/Saved_drawer/Saved_drawer";
-
+import { motion } from "framer-motion";
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [hasNewMovies, setHasNewMovies] = useState(false);
@@ -41,7 +41,10 @@ export default function Home() {
       <Drawer anchor={"right"} open={drawerState} onClose={toggleDrawer(false)}>
         <Saved_drawer />
       </Drawer>
+
       <div>
+        <motion.h2 animate={{ x: 540 }}>Newly Released</motion.h2>
+
         {hasNewMovies === true &&
           newMovies.map((newMovie) => {
             <div>

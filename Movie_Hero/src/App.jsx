@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+
 import Home from "./pages/Home/Home";
 import Register from "./components/Register/Register";
 import Sign_in from "./components/Sign_in/Sign_in";
@@ -39,12 +40,21 @@ function App() {
   };
   return (
     <div className="App">
-      <Button variant="contained" onClick={handleSignInModal}>
-        sign in
-      </Button>
-      <Button variant="contained" onClick={handleRegisterModal}>
-        register
-      </Button>
+      <div className="topSpace">
+        <Button variant="contained" onClick={handleSignInModal}>
+          sign in
+        </Button>
+        <div className="titleArea">
+          <img
+            src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/40
+      /null/external-cape-circus-flaticons-lineal-color-flat-icons-2.png"
+          />
+          <h3>Movie Hero</h3>
+        </div>
+        <Button variant="contained" onClick={handleRegisterModal}>
+          register
+        </Button>
+      </div>
       <Modal open={signInModalState} onClose={handleSignInModal}>
         <Box sx={style}>
           <Sign_in />
