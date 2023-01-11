@@ -1,28 +1,45 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../../supabaseClient";
 
 export default function Sign_in() {
-  //   <img src="https://img.icons8.com/stickers/30/null/hide.png" />;
+  const [passwordType, setPasswordType] = useState("password");
+  const [userEmail, setUserEmail] = useState(" ");
+  const [userPasswowrd, setUserPassword] = useState(" ");
 
-  //   <img src="https://img.icons8.com/stickers/30/null/visible.png" />;
+  const input_type = document.getElementById("SigninId");
+
+  async function signInWithEmail() {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: "example@email.com",
+      password: "example-password",
+    });
+  }
 
   const TogglePW = (event) => {
     event.preventDefault();
-    var input_type = document.getElementById("SigninId");
-    if (input_type.type === "password") {
-      input_type.type = "text";
+    if (passwordType === "password") {
+      setPasswordType("text");
     } else {
-      input_type.type = "password";
+      setPasswordType("password");
     }
   };
+
   return (
     <div>
       <form action="submit">
         <label>Email</label>
-        <input type="email"></input>
+        <input type="email" />
         <label id="SignPW">Password</label>
-        <input type="password" id="SigninId" placeholder="Password"></input>
+        <input type={passwordType} id="SigninId" placeholder="Password" />
 
-        <button onClick={TogglePW}>see</button>
+        <button onClick={TogglePW}>
+          {passwordType === "password" && (
+            <img src="https://img.icons8.com/stickers/20/null/hide.png" />
+          )}
+          {passwordType === "text" && (
+            <img src="https://img.icons8.com/stickers/20/null/visible.png" />
+          )}
+        </button>
         <button>Submit</button>
       </form>
     </div>

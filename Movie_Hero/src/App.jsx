@@ -8,6 +8,7 @@ import { Drawer, ButtonToolbar, Button, Placeholder } from "rsuite";
 function App() {
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
+
   return (
     <div className="App">
       <ButtonToolbar>

@@ -1,26 +1,31 @@
 import { useState } from "react";
 
 export default function Register() {
-  const [inputId, setInputId] = useState("");
-
+  const [passwordType, setPasswordType] = useState("password");
+  const [confirmedPasswordType, setConfirmedPasswordTyped] =
+    useState("password");
+  const [passwordInput, setPasswordinput] = useState("");
+  const [confirmedPasswordInput, setConfirmedPasswordinput] = useState("");
+  const [emaiInput, setEmailInput] = useState("");
+  const [id, setId] = useState("");
   const TogglePW = (event) => {
     event.preventDefault();
 
-    var input_type = document.getElementById("RegisterPW");
-    if (input_type.type === "password") {
-      input_type.type = "text";
+    const input_type = document.getElementById("RegisterPW");
+    if (passwordType === "password") {
+      setPasswordType("text");
     } else {
-      input_type.type = "password";
+      setPasswordType("password");
     }
   };
   const ToggleComfirmPW = (event) => {
     event.preventDefault();
 
     var input_type = document.getElementById("RegisterConfirmPW");
-    if (input_type.type === "password") {
-      input_type.type = "text";
+    if (confirmedPasswordType === "password") {
+      setConfirmedPasswordTyped("text");
     } else {
-      input_type.type = "password";
+      setConfirmedPasswordTyped("password");
     }
   };
   return (
@@ -29,17 +34,34 @@ export default function Register() {
         <label>Email</label>
         <input type="email"></input>
         <label>Password</label>
-        <input id="RegisterPW" type="password" placeholder="Password"></input>
+        <input
+          id="RegisterPW"
+          type={passwordType}
+          placeholder="Password"
+        ></input>
         <button type="checkbox" onClick={TogglePW}>
-          button
+          {passwordType === "password" && (
+            <img src="https://img.icons8.com/stickers/20/null/hide.png" />
+          )}
+          {passwordType === "text" && (
+            <img src="https://img.icons8.com/stickers/20/null/visible.png" />
+          )}
         </button>
         <label>Confirm Password</label>
         <input
           id="RegisterConfirmPW"
-          type="password"
+          type={confirmedPasswordType}
           placeholder="Confirm Password"
         ></input>
-        <button onClick={ToggleComfirmPW}>button</button>
+        <button onClick={ToggleComfirmPW}>
+          {" "}
+          {confirmedPasswordType === "password" && (
+            <img src="https://img.icons8.com/stickers/20/null/hide.png" />
+          )}
+          {confirmedPasswordType === "text" && (
+            <img src="https://img.icons8.com/stickers/20/null/visible.png" />
+          )}
+        </button>
         <button>Submit</button>
       </form>
     </div>

@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: "https://moviesdatabase.p.rapidapi.com/titles/x/upcoming",
+      url: import.meta.env.VITE_UPCOMING_URL,
       params: { limit: "5" },
       headers: {
         "X-RapidAPI-Key": import.meta.env.VITE_MOVIE_API_KEY,
@@ -38,7 +38,7 @@ export default function Home() {
     <div>
       <input placeholder="Search"></input>
       <ButtonToolbar>
-        <Button onClick={() => setOpen(true)}>Favorited</Button>
+        <Button onClick={() => setOpen(true)}>Favorite</Button>
       </ButtonToolbar>
       <Drawer placement="right" open={open} onClose={() => setOpen(false)}>
         <Drawer.Body>
