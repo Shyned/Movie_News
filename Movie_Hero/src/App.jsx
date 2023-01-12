@@ -4,8 +4,8 @@ import "./App.css";
 import Home from "./pages/Home/Home";
 import Register from "./components/Register/Register";
 import Sign_in from "./components/Sign_in/Sign_in";
-import Button from "@mui/material/Button";
-import { Drawer, Fade, Modal, Box } from "@mui/material";
+import { motion } from "framer-motion";
+import { Modal, Box, Button } from "@mui/material";
 function App() {
   const [signInModalState, setSignInModalState] = useState(false);
   const [registerModalState, setRegisterModalState] = useState(false);

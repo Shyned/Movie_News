@@ -43,8 +43,10 @@ export default function Home() {
       </Drawer>
 
       <div>
-        <motion.h2 animate={{ x: 540 }}>Newly Released</motion.h2>
-
+        <h2>Newly Released</h2>
+        <motion.div className="carousel">
+          <motion.div className="inner-carousel"></motion.div>
+        </motion.div>
         {hasNewMovies === true &&
           newMovies.map((newMovie) => {
             <div>
