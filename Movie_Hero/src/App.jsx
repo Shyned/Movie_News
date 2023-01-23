@@ -45,7 +45,7 @@ function App() {
           sign in
         </Button>
         <div className="titleArea">
-          <img
+          <motion.img
             src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/40
       /null/external-cape-circus-flaticons-lineal-color-flat-icons-2.png"
           />

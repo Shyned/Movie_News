@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import Saved_drawer from "../../components/Saved_drawer/Saved_drawer";
 import { motion } from "framer-motion";
+import New_Release_Card from "../../components/New_Release_Card/New_Release_Card";
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [hasNewMovies, setHasNewMovies] = useState(false);
@@ -42,20 +43,21 @@ export default function Home() {
         <Saved_drawer />
       </Drawer>
 
-      <div>
-        <h2>Newly Released</h2>
-        <motion.div className="carousel">
-          <motion.div className="inner-carousel"></motion.div>
-        </motion.div>
-        {hasNewMovies === true &&
-          newMovies.map((newMovie) => {
-            <div>
-              <h2>Hello</h2>
-              <h1>{newMovie.titleText.text}</h1>
-            </div>;
+      <h2>Newly Released</h2>
+      {hasNewMovies ? (
+        <div>
+          {newMovies.map((newMovie) => {
+            console.log(newMovie.primaryImage);
+            <New_Release_Card
+              title={newMovie.titleText.text}
+              releaseDate={newMovie.releaseDate}
+            />;
           })}
-        {/* console.log(newMovie.primaryImage.url); */}
-      </div>
+        </div>
+      ) : (
+        <div>no movie</div>
+      )}
+      <div></div>
     </div>
   );
 }
