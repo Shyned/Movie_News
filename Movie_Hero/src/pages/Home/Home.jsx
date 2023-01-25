@@ -48,7 +48,11 @@ export default function Home() {
             return (
               <New_Release_Card
                 title={newMovie.titleText.text}
-                releaseDate={newMovie.releaseDate}
+                releaseDate={[
+                  newMovie.releaseDate.month,
+                  newMovie.releaseDate.day,
+                  newMovie.releaseDate.year,
+                ]}
                 image={newMovie.primaryImage}
                 key={newMovie.id}
               />
