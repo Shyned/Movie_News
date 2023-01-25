@@ -33,8 +33,6 @@ export default function Home() {
     Upcoming_Movies();
   }, []);
 
-  // TODO: search function
-
   return (
     <div>
       <input placeholder="Search"></input>
@@ -43,15 +41,18 @@ export default function Home() {
         <Saved_drawer />
       </Drawer>
 
-      <h2>Newly Released</h2>
+      <p className="text-9xl">Newly Released</p>
       {hasNewMovies ? (
         <div>
           {newMovies.map((newMovie) => {
-            console.log(newMovie.primaryImage);
-            <New_Release_Card
-              title={newMovie.titleText.text}
-              releaseDate={newMovie.releaseDate}
-            />;
+            return (
+              <New_Release_Card
+                title={newMovie.titleText.text}
+                releaseDate={newMovie.releaseDate}
+                image={newMovie.primaryImage}
+                key={newMovie.id}
+              />
+            );
           })}
         </div>
       ) : (
