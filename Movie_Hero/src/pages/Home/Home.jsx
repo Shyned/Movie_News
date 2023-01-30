@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Drawer } from "@mui/material";
+import { Drawer, Skeleton } from "@mui/material";
 import { Button } from "@mui/material";
 import axios from "axios";
 import Saved_drawer from "../../components/Saved_drawer/Saved_drawer";
@@ -33,6 +33,7 @@ export default function Home() {
       };
       const response = await axios.request(options);
       setNewMovies(response.data.results);
+      setHasNewMovies(true);
     }
     Upcoming_Movies();
 
@@ -41,9 +42,8 @@ export default function Home() {
         method: "GET",
         url: "https://moviesdatabase.p.rapidapi.com/titles/utils/lists",
         headers: {
-          "X-RapidAPI-Key":
-            "f635c5492emshb2e6721adc62d5fp1c5272jsn1187fe17f294",
-          "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
+          "X-RapidAPI-Key": import.meta.env.VITE_MOVIE_API_KEY,
+          "X-RapidAPI-Host": import.meta.env.VITE_MOVIE_API,
         },
       };
       const response = await axios.request(optionsforlist);
@@ -51,7 +51,6 @@ export default function Home() {
     }
 
     MainCardListOptions();
-    setHasNewMovies(true);
   }, []);
 
   return (
@@ -81,9 +80,17 @@ export default function Home() {
           })}
         </Carousel>
       ) : (
-        <></>
+        <Skeleton />
       )}
-      <div>{hasNewMovies ? <MainMovieCard /> : <></>}</div>
+      <div>
+        {hasNewMovies ? (
+          mainCardList.map((mainCardItem, i) => {
+            return <MainMovieCard searches={mainCardItem} key={(i = i + 1)} />;
+          })
+        ) : (
+          <Skeleton />
+        )}
+      </div>
     </div>
   );
 }

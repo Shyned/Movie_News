@@ -9,8 +9,8 @@ export default function Search() {
       method: "GET",
       url: "https://moviesdatabase.p.rapidapi.com/titles/utils/genres",
       headers: {
-        "X-RapidAPI-Key": "f635c5492emshb2e6721adc62d5fp1c5272jsn1187fe17f294",
-        "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_MOVIE_API_KEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_MOVIE_API,
       },
     };
 
@@ -26,7 +26,7 @@ export default function Search() {
   }, []);
 
   return (
-    <div>
+    <div className="space-x-1.5 ">
       <input placeholder="Search" />
       <select name="cars" id="cars">
         {loadingGenres == false ? (
