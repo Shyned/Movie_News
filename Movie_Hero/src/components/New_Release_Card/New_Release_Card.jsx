@@ -3,7 +3,6 @@ import no_image from "../../assets/no_image.jpg";
 import { Skeleton } from "@mui/material";
 
 export default function New_Release_Card({ title, releaseDate, image }) {
-  console.log(image);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
