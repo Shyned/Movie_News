@@ -5,6 +5,7 @@ import axios from "axios";
 import Saved_drawer from "../../components/Saved_drawer/Saved_drawer";
 import { motion } from "framer-motion";
 import New_Release_Card from "../../components/New_Release_Card/New_Release_Card";
+import Carousel from "react-material-ui-carousel";
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [hasNewMovies, setHasNewMovies] = useState(false);
@@ -19,7 +20,7 @@ export default function Home() {
     const options = {
       method: "GET",
       url: import.meta.env.VITE_UPCOMING_URL,
-      params: { limit: "5" },
+      params: { limit: "9" },
       headers: {
         "X-RapidAPI-Key": import.meta.env.VITE_MOVIE_API_KEY,
         "X-RapidAPI-Host": import.meta.env.VITE_MOVIE_API,
@@ -41,9 +42,9 @@ export default function Home() {
         <Saved_drawer />
       </Drawer>
 
-      <p className="text-9xl">Newly Released</p>
+      <p className="text-2xl">To be released</p>
       {hasNewMovies ? (
-        <div>
+        <Carousel className="w-2/12 border-2 content-center">
           {newMovies.map((newMovie) => {
             return (
               <New_Release_Card
@@ -58,9 +59,9 @@ export default function Home() {
               />
             );
           })}
-        </div>
+        </Carousel>
       ) : (
-        <div>no movie</div>
+        <></>
       )}
       <div></div>
     </div>
