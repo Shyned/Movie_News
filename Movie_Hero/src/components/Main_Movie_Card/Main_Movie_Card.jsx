@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import Carousel from "react-material-ui-carousel";
+import no_image from "../../assets/no_image.jpg";
+
 export default function MainMovieCard({ searches }) {
   const [movieSearchResults, setMovieSearchResults] = useState([]);
   useEffect(() => {
@@ -27,7 +30,17 @@ export default function MainMovieCard({ searches }) {
   return (
     <div>
       {movieSearchResults.map((resultedMovie) => {
-        console.log(resultedMovie.primaryImage);
+        return (
+          <Carousel>
+            <img
+              src={
+                resultedMovie.primaryImage === null
+                  ? no_image
+                  : resultedMovie.primaryImage.url
+              }
+            ></img>
+          </Carousel>
+        );
       })}
     </div>
   );

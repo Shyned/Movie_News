@@ -85,7 +85,12 @@ export default function Home() {
       <div>
         {hasNewMovies ? (
           mainCardList.map((mainCardItem, i) => {
-            return <MainMovieCard searches={mainCardItem} key={(i = i + 1)} />;
+            return (
+              <div>
+                <h2>{mainCardItem}</h2>
+                <MainMovieCard searches={mainCardItem} key={(i = i + 1)} />
+              </div>
+            );
           })
         ) : (
           <Skeleton />
