@@ -6,6 +6,7 @@ import no_image from "../../assets/no_image.jpg";
 
 export default function MainMovieCard({ searches }) {
   const [movieSearchResults, setMovieSearchResults] = useState([]);
+  const [hasMovieResults, setHasMovieResults] = useState(false);
   useEffect(() => {
     const options = {
       method: "GET",
@@ -21,6 +22,7 @@ export default function MainMovieCard({ searches }) {
       .request(options)
       .then(function (response) {
         setMovieSearchResults(response.data.results);
+        setHasMovieResults(true);
       })
       .catch(function (error) {
         console.error(error);
@@ -29,19 +31,35 @@ export default function MainMovieCard({ searches }) {
 
   return (
     <div>
-      {movieSearchResults.map((resultedMovie) => {
-        return (
-          <Carousel>
-            <img
-              src={
-                resultedMovie.primaryImage === null
-                  ? no_image
-                  : resultedMovie.primaryImage.url
-              }
-            ></img>
-          </Carousel>
-        );
-      })}
+      {hasMovieResults === true ? (
+        <Carousel>
+          {movieSearchResults.map((resultedMovie) => {
+            console.log(resultedMovie.releaseDate);
+            return (
+              <div className="hover:bg-auto">
+                <img
+                  key={resultedMovie.id}
+                  width={240}
+                  height={"auto"}
+                  src={
+                    resultedMovie.primaryImage === null
+                      ? no_image
+                      : resultedMovie.primaryImage.url
+                  }
+                />
+                <h3>{resultedMovie.titleText.text}</h3>
+                <h3>
+                  {resultedMovie.releaseDate !== null
+                    ? resultedMovie.releaseDate.year
+                    : "No date Available"}
+                </h3>
+              </div>
+            );
+          })}
+        </Carousel>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

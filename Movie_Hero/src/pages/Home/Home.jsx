@@ -61,7 +61,7 @@ export default function Home() {
         <Saved_drawer />
       </Drawer>
 
-      <p className="text-2xl">To be released</p>
+      <p className="text-2xl">Soon To Be Released</p>
       {hasNewMovies ? (
         <Carousel className="w-2/12 border-2 content-center">
           {newMovies.map((newMovie) => {
@@ -87,7 +87,11 @@ export default function Home() {
           mainCardList.map((mainCardItem, i) => {
             return (
               <div>
-                <h2>{mainCardItem}</h2>
+                <h2>
+                  {mainCardItem === "most_pop_movies"
+                    ? "Popular Movies"
+                    : mainCardItem}
+                </h2>
                 <MainMovieCard searches={mainCardItem} key={(i = i + 1)} />
               </div>
             );

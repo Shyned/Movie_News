@@ -49,7 +49,7 @@ function App() {
             src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/40
       /null/external-cape-circus-flaticons-lineal-color-flat-icons-2.png"
           />
-          <h3>Movie Hero</h3>
+          <h3 className="text-2xl">Movie Hero</h3>
         </div>
         <Button variant="contained" onClick={handleRegisterModal}>
           register
