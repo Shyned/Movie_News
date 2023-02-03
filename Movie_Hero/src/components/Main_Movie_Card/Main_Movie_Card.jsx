@@ -33,8 +33,7 @@ export default function MainMovieCard({ searches }) {
     <div>
       {hasMovieResults === true ? (
         <Carousel>
-          {movieSearchResults.map((resultedMovie) => {
-            console.log(resultedMovie.releaseDate);
+          {movieSearchResults.map((resultedMovie, i) => {
             return (
               <div className="hover:bg-auto">
                 <img

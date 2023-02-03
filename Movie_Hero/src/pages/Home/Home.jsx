@@ -64,9 +64,10 @@ export default function Home() {
       <p className="text-2xl">Soon To Be Released</p>
       {hasNewMovies ? (
         <Carousel className="w-2/12 border-2 content-center">
-          {newMovies.map((newMovie) => {
+          {newMovies.map((newMovie, i) => {
             return (
               <New_Release_Card
+                key={(i = i + 1)}
                 title={newMovie.titleText.text}
                 releaseDate={[
                   newMovie.releaseDate.month,
@@ -90,7 +91,21 @@ export default function Home() {
                 <h2>
                   {mainCardItem === "most_pop_movies"
                     ? "Popular Movies"
-                    : mainCardItem}
+                    : mainCardItem === "most_pop_series"
+                    ? "Popular series"
+                    : mainCardItem === "top_boxoffice_200"
+                    ? "Top Box office"
+                    : mainCardItem === "top_boxoffice_last_weekend_10"
+                    ? "Top movies from the Weekend"
+                    : mainCardItem === "top_rated_250"
+                    ? "Top 10 movies"
+                    : mainCardItem === "top_rated_english_250"
+                    ? "Top English movies"
+                    : mainCardItem === "top_rated_lowest_100"
+                    ? "Lowest rated movies"
+                    : mainCardItem === "top_rated_series_250"
+                    ? "Top Series"
+                    : "Movies"}
                 </h2>
                 <MainMovieCard searches={mainCardItem} key={(i = i + 1)} />
               </div>
