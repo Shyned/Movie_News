@@ -3,16 +3,18 @@ import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-
+import { Skeleton } from "@mui/material";
+import Carousel from "react-material-ui-carousel";
 export default function Search() {
   const [genres, setGenres] = useState([]);
   const [loadingGenres, setLoadingGenres] = useState(true);
   const [open, setOpen] = useState(false);
   const [serachResults, setSearchResults] = useState({});
   const [searchTitle, setSearchTitle] = useState("");
-  const [loadingResults, setLoadingResults] = useState(false);
+  const [loadingResults, setLoadingResults] = useState(true);
 
-  async function search() {
+  async function search(event) {
+    event.preventDefault();
     const options = {
       method: "GET",
       url: "https://movie-database-alternative.p.rapidapi.com/",
@@ -22,10 +24,13 @@ export default function Search() {
         "X-RapidAPI-Host": import.meta.env.VITE_ALTER_MOVIE_API,
       },
     };
-    const response = await axios.request(options);
-    console.log(response.data);
-  }
 
+    const response = await axios.request(options);
+    setSearchResults(response.data.Search);
+    document.getElementById("search").value = " ";
+    setLoadingResults(false);
+  }
+  console.log(serachResults);
   const style = {
     position: "absolute",
     top: "50%",
@@ -59,13 +64,43 @@ export default function Search() {
       >
         <Box sx={{ ...style }}>
           <input
+            id="search"
             placeholder="Search"
             onChange={(event) => {
               setSearchTitle(event.target.value);
             }}
           />
 
-          <button>Find</button>
+          <button
+            onClick={search}
+            className="border-4 border-black hover:bg-black hover:border-slate-200 hover:text-slate-200 w-1/12 rounded-md ml-5"
+          >
+            Find
+          </button>
+          <div className="">
+            {loadingResults === true ? (
+              <Skeleton className="w-5/12" />
+            ) : (
+              <Carousel className="w-5/12 border-4 border-black bg-slate-200 h-full">
+                {serachResults.map((result) => {
+                  console.log(result);
+                  return (
+                    <div
+                      key={result.id}
+                      className="w-full h-auto hover:bg-white"
+                    >
+                      <img
+                        width={"80%"}
+                        className=""
+                        src={result.Poster !== null ? result.Poster : ""}
+                        alt="movie poster image"
+                      />
+                    </div>
+                  );
+                })}
+              </Carousel>
+            )}
+          </div>
         </Box>
       </Modal>
     </div>

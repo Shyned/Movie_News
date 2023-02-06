@@ -39,7 +39,7 @@ function App() {
     p: 4,
   };
   return (
-    <div className="App">
+    <div className=" bg-slate-900">
       <div className="topSpace">
         <Button variant="contained" onClick={handleSignInModal}>
           sign in

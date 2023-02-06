@@ -54,7 +54,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="">
       <Search />
       <Button onClick={toggleDrawer(true)}>Saved</Button>
       <Drawer anchor={"right"} open={drawerState} onClose={toggleDrawer(false)}>
@@ -67,6 +67,7 @@ export default function Home() {
           {newMovies.map((newMovie, i) => {
             return (
               <New_Release_Card
+                className="bg-orange-50"
                 key={(i = i + 1)}
                 title={newMovie.titleText.text}
                 releaseDate={[
@@ -75,7 +76,6 @@ export default function Home() {
                   newMovie.releaseDate.year,
                 ]}
                 image={newMovie.primaryImage}
-                key={newMovie.id}
               />
             );
           })}
@@ -83,12 +83,12 @@ export default function Home() {
       ) : (
         <Skeleton />
       )}
-      <div>
+      <div className="flex space-x-6">
         {hasNewMovies ? (
           mainCardList.map((mainCardItem, i) => {
             return (
-              <div>
-                <h2>
+              <div className="w-96">
+                <h2 key={(i = i + 1)}>
                   {mainCardItem === "most_pop_movies"
                     ? "Popular Movies"
                     : mainCardItem === "most_pop_series"
@@ -107,7 +107,11 @@ export default function Home() {
                     ? "Top Series"
                     : "Movies"}
                 </h2>
-                <MainMovieCard searches={mainCardItem} key={(i = i + 1)} />
+                <MainMovieCard
+                  searches={mainCardItem}
+                  key={(i = i + 1)}
+                  className="w-4/12"
+                />
               </div>
             );
           })
