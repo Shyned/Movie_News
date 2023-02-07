@@ -30,15 +30,15 @@ export default function MainMovieCard({ searches }) {
   }, []);
 
   return (
-    <div className="w-11/12 flex">
+    <div className=" ">
       {hasMovieResults === true ? (
-        <Carousel className="w-60">
+        <Carousel className="">
           {movieSearchResults.map((resultedMovie, i) => {
             return (
-              <div className=" bg-slate-300 w-60">
+              <div className="">
                 <img
                   key={resultedMovie.id}
-                  width={240}
+                  width={200}
                   height={"auto"}
                   src={
                     resultedMovie.primaryImage === null

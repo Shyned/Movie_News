@@ -63,7 +63,7 @@ export default function Home() {
 
       <p className="text-2xl">Soon To Be Released</p>
       {hasNewMovies ? (
-        <Carousel className="w-2/12 border-2 content-center">
+        <Carousel className="w-2/12 border-2 content-center ">
           {newMovies.map((newMovie, i) => {
             return (
               <New_Release_Card
@@ -83,12 +83,12 @@ export default function Home() {
       ) : (
         <Skeleton />
       )}
-      <div className="flex space-x-6">
+      <div className="flex items-center w-full h-full overflow-x-scroll space-x-6">
         {hasNewMovies ? (
           mainCardList.map((mainCardItem, i) => {
             return (
-              <div className="w-96">
-                <h2 key={(i = i + 1)}>
+              <div className="w-auto border-4 border-white bg-slate-300">
+                <h2 key={(i = i + 1)} className="">
                   {mainCardItem === "most_pop_movies"
                     ? "Popular Movies"
                     : mainCardItem === "most_pop_series"
@@ -107,11 +107,7 @@ export default function Home() {
                     ? "Top Series"
                     : "Movies"}
                 </h2>
-                <MainMovieCard
-                  searches={mainCardItem}
-                  key={(i = i + 1)}
-                  className="w-4/12"
-                />
+                <MainMovieCard searches={mainCardItem} key={(i = i + 1)} />
               </div>
             );
           })

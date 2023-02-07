@@ -14,7 +14,6 @@ export default function Search() {
   const [loadingResults, setLoadingResults] = useState(true);
 
   async function search(event) {
-    event.preventDefault();
     const options = {
       method: "GET",
       url: "https://movie-database-alternative.p.rapidapi.com/",
@@ -52,7 +51,8 @@ export default function Search() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  console.log(searchTitle);
+  console.log(serachResults);
   return (
     <div className="space-x-1.5 ">
       <Button onClick={handleOpen}>Search</Button>
@@ -64,6 +64,7 @@ export default function Search() {
       >
         <Box sx={{ ...style }}>
           <input
+            className="border-4 border-black "
             id="search"
             placeholder="Search"
             onChange={(event) => {
@@ -80,13 +81,14 @@ export default function Search() {
           <div className="">
             {loadingResults === true ? (
               <Skeleton className="w-5/12" />
+            ) : serachResults == undefined ? (
+              <h1>No results were found</h1>
             ) : (
               <Carousel className="w-5/12 border-4 border-black bg-slate-200 h-full">
                 {serachResults.map((result) => {
-                  console.log(result);
                   return (
                     <div
-                      key={result.id}
+                      key={result.imdbID}
                       className="w-full h-auto hover:bg-white"
                     >
                       <img
@@ -94,6 +96,7 @@ export default function Search() {
                         className=""
                         src={result.Poster !== null ? result.Poster : ""}
                         alt="movie poster image"
+                        key={result.id}
                       />
                     </div>
                   );
