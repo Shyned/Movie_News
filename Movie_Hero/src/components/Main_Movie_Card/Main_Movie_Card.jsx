@@ -3,10 +3,12 @@ import axios from "axios";
 import { useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import no_image from "../../assets/no_image.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function MainMovieCard({ searches }) {
   const [movieSearchResults, setMovieSearchResults] = useState([]);
   const [hasMovieResults, setHasMovieResults] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const options = {
       method: "GET",
@@ -30,28 +32,31 @@ export default function MainMovieCard({ searches }) {
   }, []);
 
   return (
-    <div className=" ">
+    <div>
       {hasMovieResults === true ? (
-        <Carousel className="">
+        <Carousel>
           {movieSearchResults.map((resultedMovie, i) => {
             return (
-              <div className="">
+              <div>
                 <img
+                  className="border-8 border-black"
                   key={resultedMovie.id}
-                  width={200}
-                  height={"auto"}
                   src={
                     resultedMovie.primaryImage === null
                       ? no_image
                       : resultedMovie.primaryImage.url
                   }
                 />
-                <h3>{resultedMovie.titleText.text}</h3>
-                <h3>
-                  {resultedMovie.releaseDate !== null
-                    ? resultedMovie.releaseDate.year
-                    : "No date Available"}
-                </h3>
+                <div className="">
+                  <h3 className="font-bold">{resultedMovie.titleText.text}</h3>
+
+                  <button
+                    className="ml-10  hover:drop-shadow-xl hover:scale-[1.2] ease-in-out duration-500"
+                    onClick={() => navigate("/searched")}
+                  >
+                    <img src="https://img.icons8.com/3d-plastilina/69/null/plus--v2.png" />
+                  </button>
+                </div>
               </div>
             );
           })}

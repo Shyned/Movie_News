@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Skeleton } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
+import { useNavigate } from "react-router-dom";
 export default function Search() {
   const [genres, setGenres] = useState([]);
   const [loadingGenres, setLoadingGenres] = useState(true);
@@ -12,6 +13,7 @@ export default function Search() {
   const [serachResults, setSearchResults] = useState({});
   const [searchTitle, setSearchTitle] = useState("");
   const [loadingResults, setLoadingResults] = useState(true);
+  const navigate = useNavigate();
 
   async function search(event) {
     const options = {
@@ -29,7 +31,7 @@ export default function Search() {
     document.getElementById("search").value = " ";
     setLoadingResults(false);
   }
-  console.log(serachResults);
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -51,11 +53,16 @@ export default function Search() {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(searchTitle);
-  console.log(serachResults);
+  const [tester, setTester] = useState("");
+
   return (
     <div className="space-x-1.5 ">
-      <Button onClick={handleOpen}>Search</Button>
+      <button
+        onClick={handleOpen}
+        className="hover:scale-125 hover:border-8 hover:border-black rounded-md bg-red-400"
+      >
+        Search
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -78,26 +85,36 @@ export default function Search() {
           >
             Find
           </button>
-          <div className="">
+          <div className="w-9/12 mt-20 h-9/12 ml-auto mr-auto">
             {loadingResults === true ? (
               <Skeleton className="w-5/12" />
             ) : serachResults == undefined ? (
               <h1>No results were found</h1>
             ) : (
-              <Carousel className="w-5/12 border-4 border-black bg-slate-200 h-full">
+              <Carousel className="w-6/12 border-4 border-black bg-slate-200 ">
                 {serachResults.map((result) => {
                   return (
                     <div
                       key={result.imdbID}
-                      className="w-full h-auto hover:bg-white"
+                      className="w-full h-auto hover:bg-white flex"
                     >
                       <img
-                        width={"80%"}
+                        width={"50%"}
                         className=""
                         src={result.Poster !== null ? result.Poster : ""}
                         alt="movie poster image"
                         key={result.id}
                       />
+                      <div className="space-y-20">
+                        <p className="font-bold">{result.Title}</p>
+
+                        <button
+                          className="ml-10  hover:drop-shadow-xl hover:scale-[1.2] ease-in-out duration-500"
+                          onClick={() => navigate("/searched")}
+                        >
+                          <img src="https://img.icons8.com/3d-plastilina/69/null/plus--v2.png" />
+                        </button>
+                      </div>
                     </div>
                   );
                 })}

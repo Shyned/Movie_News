@@ -54,41 +54,43 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="">
+    <div>
       <Search />
-      <Button onClick={toggleDrawer(true)}>Saved</Button>
-      <Drawer anchor={"right"} open={drawerState} onClose={toggleDrawer(false)}>
-        <Saved_drawer />
-      </Drawer>
 
-      <p className="text-2xl">Soon To Be Released</p>
-      {hasNewMovies ? (
-        <Carousel className="w-2/12 border-2 content-center ">
-          {newMovies.map((newMovie, i) => {
-            return (
-              <New_Release_Card
-                className="bg-orange-50"
-                key={(i = i + 1)}
-                title={newMovie.titleText.text}
-                releaseDate={[
-                  newMovie.releaseDate.month,
-                  newMovie.releaseDate.day,
-                  newMovie.releaseDate.year,
-                ]}
-                image={newMovie.primaryImage}
-              />
-            );
-          })}
-        </Carousel>
-      ) : (
-        <Skeleton />
-      )}
-      <div className="flex items-center w-full h-full overflow-x-scroll space-x-6">
+      <div className="mb-8 ">
+        <div className=" bg-slate-900  w-4/12 mr-auto ml-auto">
+          <p className="text-2xl ml-20 text-white font-bold">
+            Soon To Be Released
+          </p>
+        </div>
+        {hasNewMovies ? (
+          <Carousel className="w-2/12 border-4 mt-4 ml-auto mr-auto bg-slate-50 hover:scale-105 ease-in-out duration-500 p-2 rounded-md border-black ">
+            {newMovies.map((newMovie, i) => {
+              return (
+                <New_Release_Card
+                  className="bg-orange-50 hover:drop-shadow-2xl "
+                  key={(i = i + 1)}
+                  title={newMovie.titleText.text}
+                  releaseDate={[
+                    newMovie.releaseDate.month,
+                    newMovie.releaseDate.day,
+                    newMovie.releaseDate.year,
+                  ]}
+                  image={newMovie.primaryImage}
+                />
+              );
+            })}
+          </Carousel>
+        ) : (
+          <Skeleton />
+        )}
+      </div>
+      <div className="items-center flex space-x-12 w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth pb-8 z-10">
         {hasNewMovies ? (
           mainCardList.map((mainCardItem, i) => {
             return (
-              <div className="w-auto border-4 border-white bg-slate-300">
-                <h2 key={(i = i + 1)} className="">
+              <div className="font-bold bg-slate-300 inline-block p-2 cursor-pointer hover:drop-shadow-2xl hover:saturate-200 hover:border-8 hover:border-white ease-in-out duration-500 w-72 min-h-80 hover:z-50 rounded-md border-4 border-black ">
+                <h2 key={(i = i + 1)}>
                   {mainCardItem === "most_pop_movies"
                     ? "Popular Movies"
                     : mainCardItem === "most_pop_series"
@@ -96,7 +98,7 @@ export default function Home() {
                     : mainCardItem === "top_boxoffice_200"
                     ? "Top Box office"
                     : mainCardItem === "top_boxoffice_last_weekend_10"
-                    ? "Top movies from the Weekend"
+                    ? "Weekend Movies"
                     : mainCardItem === "top_rated_250"
                     ? "Top 10 movies"
                     : mainCardItem === "top_rated_english_250"

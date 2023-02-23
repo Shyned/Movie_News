@@ -14,8 +14,12 @@ export default function New_Release_Card({ title, releaseDate, image }) {
       {loading ? (
         <Skeleton variant="rectangular" width={210} height={60} />
       ) : (
-        <div className="">
-          <img src={image == null ? no_image : image.url} alt={title} />
+        <div className="font-semibold">
+          <img
+            src={image == null ? no_image : image.url}
+            alt={title}
+            className="border-8 border-black"
+          />
           <h3>{title}</h3>
           <h3>Release Date</h3>
           <h3>

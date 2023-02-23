@@ -39,32 +39,17 @@ function App() {
     p: 4,
   };
   return (
-    <div className=" bg-slate-900">
-      <div className="topSpace">
-        <Button variant="contained" onClick={handleSignInModal}>
-          sign in
-        </Button>
-        <div className="titleArea">
-          <motion.img
+    <div className=" bg-black">
+      <div className="flex space-x-80">
+        <div className="titleArea ml-auto mr-auto">
+          <img
             src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/40
       /null/external-cape-circus-flaticons-lineal-color-flat-icons-2.png"
           />
           <h3 className="text-2xl">Movie Hero</h3>
         </div>
-        <Button variant="contained" onClick={handleRegisterModal}>
-          register
-        </Button>
       </div>
-      <Modal open={signInModalState} onClose={handleSignInModal}>
-        <Box sx={style}>
-          <Sign_in />
-        </Box>
-      </Modal>
-      <Modal open={registerModalState} onClose={handleRegisterModal}>
-        <Box sx={style}>
-          <Register />
-        </Box>
-      </Modal>
+
       <Home />
     </div>
   );

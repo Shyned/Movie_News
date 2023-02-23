@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Saved from "./pages/Saved/Saved";
+import Searched from "./pages/Searched/Searched";
 import "./main.css";
 const router = createBrowserRouter([
   {
@@ -10,8 +10,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/Saved",
-    element: <Saved />,
+    path: "/searched",
+    element: <Searched />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
